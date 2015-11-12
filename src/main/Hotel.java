@@ -1,18 +1,20 @@
 package main;
 
-/**
- * Created by Lenovo on 11/10/2015.
- */
 public class Hotel {
-    private final double rate;
+    private final Rate rate;
 
-    public Hotel(double rate) {
+    public Hotel(Rate rate) {
         this.rate = rate;
     }
 
-    public boolean isCheaperThan(Hotel cheapestHotel) {
-        return this.rate < cheapestHotel.rate;
+    private boolean isCheaperThan(Hotel cheapestHotel, boolean isWeekDay) {
+        return this.rate.getRateFor(isWeekDay) < cheapestHotel.rate.getRateFor(isWeekDay);
     }
 
-
+    public Hotel getCheaperHotel(Hotel cheapestHotel, boolean isWeekDay) {
+        if(this.isCheaperThan(cheapestHotel, isWeekDay)){
+            return this;
+        }
+        return cheapestHotel;
+    }
 }

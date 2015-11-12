@@ -1,10 +1,9 @@
 package main;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Lenovo on 11/10/2015.
- */
 public class ReservationSystem {
 
     private final List<Hotel> hotels;
@@ -13,14 +12,22 @@ public class ReservationSystem {
         this.hotels = hotels;
     }
 
-    public Hotel findCheapestHotel() {
+    public Hotel findCheapestHotelFor(Date date) {
+        boolean isWeekDay = isWeekDay(date);
         Hotel cheapestHotel = hotels.get(0);
         for (Hotel hotel:hotels){
-            if(hotel.isCheaperThan(cheapestHotel)){
-                cheapestHotel = hotel;
-            }
+            cheapestHotel = hotel.getCheaperHotel(cheapestHotel, isWeekDay);
         }
         return cheapestHotel;
+    }
+
+    private boolean isWeekDay(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+            return false;
+        }
+        return true;
     }
 
 }
