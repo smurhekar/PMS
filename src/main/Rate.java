@@ -1,15 +1,21 @@
 package main;
 
 public class Rate {
-    private final double weekday;
-    private final double weekend;
 
-    public Rate(double weekday, double weekend) {
-        this.weekday = weekday;
-        this.weekend = weekend;
+
+    private final Regular regular;
+    private final Reward reward;
+
+    public Rate( Regular regular, Reward reward) {
+        this.regular = regular;
+        this.reward = reward;
     }
 
-    public double getRateFor(boolean isWeekDay) {
-        return isWeekDay ? weekday : weekend;
+    public double getRateFor(boolean isWeekDay, String customerType) {
+        if (customerType.equals("Regular")){
+            return regular.getRateFor(isWeekDay);
+        }else{
+            return reward.getRateFor(isWeekDay);
+        }
     }
 }

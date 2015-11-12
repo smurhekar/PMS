@@ -1,8 +1,6 @@
 package test;
 
-import main.Hotel;
-import main.Rate;
-import main.ReservationSystem;
+import main.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,30 +13,62 @@ import static org.junit.Assert.assertEquals;
 public class ReservationSystemTest {
 
     @Test
-    public void shouldBeAbleToFindCheapestHotelForWeekdayRates(){
+    public void shouldBeAbleToFindCheapestHotelForRegularCustomerOnWeekday(){
         List<Hotel> hotels = new ArrayList<>();
-        Hotel lakewood = new Hotel(new Rate(110.0, 90.0));
-        Hotel bridgewood = new Hotel(new Rate(160.0, 60.0));
-        Hotel ridgewood = new Hotel(new Rate(100.0, 150.0));
+        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
         hotels.add(lakewood);
         hotels.add(bridgewood);
         hotels.add(ridgewood);
         ReservationSystem reservationSystem = new ReservationSystem(hotels);
-        assertEquals(ridgewood, reservationSystem.findCheapestHotelFor(new Date()));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2015, 10, 12);
+        assertEquals(lakewood, reservationSystem.findCheapestHotelFor(new Date(), "Regular"));
     }
 
     @Test
-    public void shouldBeAbleToFindCheapestHotelForWeekendRates(){
+    public void shouldBeAbleToFindCheapestHotelForRegularCustomerTypeOnWeekend(){
         List<Hotel> hotels = new ArrayList<>();
-        Hotel lakewood = new Hotel(new Rate(110.0, 90.0));
-        Hotel bridgewood = new Hotel(new Rate(160.0, 60.0));
-        Hotel ridgewood = new Hotel(new Rate(100.0, 150.0));
+        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
         hotels.add(lakewood);
         hotels.add(bridgewood);
         hotels.add(ridgewood);
         ReservationSystem reservationSystem = new ReservationSystem(hotels);
         Calendar calendar = Calendar.getInstance();
         calendar.set(2015, 10, 15);
-        assertEquals(bridgewood, reservationSystem.findCheapestHotelFor(calendar.getTime()));
+        assertEquals(bridgewood, reservationSystem.findCheapestHotelFor(calendar.getTime(), "Regular"));
+    }
+
+    @Test
+    public void shouldBeAbleToFindCheapestHotelForRewardCustomerTypeOnWeekday(){
+        List<Hotel> hotels = new ArrayList<>();
+        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
+        hotels.add(lakewood);
+        hotels.add(bridgewood);
+        hotels.add(ridgewood);
+        ReservationSystem reservationSystem = new ReservationSystem(hotels);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2015, 10, 12);
+        assertEquals(lakewood, reservationSystem.findCheapestHotelFor(calendar.getTime(), "Reward"));
+    }
+
+    @Test
+    public void shouldBeAbleToFindCheapestHotelForRewardCustomerTypeOnWeekend(){
+        List<Hotel> hotels = new ArrayList<>();
+        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
+        hotels.add(lakewood);
+        hotels.add(bridgewood);
+        hotels.add(ridgewood);
+        ReservationSystem reservationSystem = new ReservationSystem(hotels);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2015, 10, 15);
+        assertEquals(ridgewood, reservationSystem.findCheapestHotelFor(calendar.getTime(), "Reward"));
     }
 }

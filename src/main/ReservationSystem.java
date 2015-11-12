@@ -12,11 +12,11 @@ public class ReservationSystem {
         this.hotels = hotels;
     }
 
-    public Hotel findCheapestHotelFor(Date date) {
+    public Hotel findCheapestHotelFor(Date date, String customerType) {
         boolean isWeekDay = isWeekDay(date);
         Hotel cheapestHotel = hotels.get(0);
         for (Hotel hotel:hotels){
-            cheapestHotel = hotel.getCheaperHotel(cheapestHotel, isWeekDay);
+            cheapestHotel = hotel.getCheaperHotel(cheapestHotel, isWeekDay, customerType);
         }
         return cheapestHotel;
     }
