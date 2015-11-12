@@ -8,11 +8,11 @@ public class Hotel {
     }
 
     private boolean isCheaperThan(Hotel cheapestHotel, boolean isWeekDay) {
-        return this.rate.getRateFor(isWeekDay) < cheapestHotel.rate.getRateFor(isWeekDay);
+        return rate.getRateFor(isWeekDay) < cheapestHotel.rate.getRateFor(isWeekDay);
     }
 
     public Hotel getCheaperHotel(Hotel cheapestHotel, boolean isWeekDay) {
-        if(this.isCheaperThan(cheapestHotel, isWeekDay)){
+        if(isCheaperThan(cheapestHotel, isWeekDay)){
             return this;
         }
         return cheapestHotel;
