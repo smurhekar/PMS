@@ -2,11 +2,10 @@ package main;
 
 public class Rate {
 
+    private final Customer regular;
+    private final Customer reward;
 
-    private final Regular regular;
-    private final Reward reward;
-
-    public Rate( Regular regular, Reward reward) {
+    public Rate( Customer regular, Customer reward) {
         this.regular = regular;
         this.reward = reward;
     }

@@ -15,9 +15,9 @@ public class ReservationSystemTest {
     @Test
     public void shouldBeAbleToFindCheapestHotelForRegularCustomerOnWeekday(){
         List<Hotel> hotels = new ArrayList<>();
-        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
-        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
-        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
+        Hotel lakewood = new Hotel(new Rate(new Customer(110.0, 90.0), new Customer(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Customer(160.0, 60.0), new Customer(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Customer(220.0, 150.0), new Customer(100.0, 40.0)));
         hotels.add(lakewood);
         hotels.add(bridgewood);
         hotels.add(ridgewood);
@@ -30,9 +30,9 @@ public class ReservationSystemTest {
     @Test
     public void shouldBeAbleToFindCheapestHotelForRegularCustomerTypeOnWeekend(){
         List<Hotel> hotels = new ArrayList<>();
-        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
-        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
-        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
+        Hotel lakewood = new Hotel(new Rate(new Customer(110.0, 90.0), new Customer(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Customer(160.0, 60.0), new Customer(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Customer(220.0, 150.0), new Customer(100.0, 40.0)));
         hotels.add(lakewood);
         hotels.add(bridgewood);
         hotels.add(ridgewood);
@@ -45,9 +45,9 @@ public class ReservationSystemTest {
     @Test
     public void shouldBeAbleToFindCheapestHotelForRewardCustomerTypeOnWeekday(){
         List<Hotel> hotels = new ArrayList<>();
-        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
-        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
-        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
+        Hotel lakewood = new Hotel(new Rate(new Customer(110.0, 90.0), new Customer(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Customer(160.0, 60.0), new Customer(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Customer(220.0, 150.0), new Customer(100.0, 40.0)));
         hotels.add(lakewood);
         hotels.add(bridgewood);
         hotels.add(ridgewood);
@@ -60,9 +60,9 @@ public class ReservationSystemTest {
     @Test
     public void shouldBeAbleToFindCheapestHotelForRewardCustomerTypeOnWeekend(){
         List<Hotel> hotels = new ArrayList<>();
-        Hotel lakewood = new Hotel(new Rate(new Regular(110.0, 90.0), new Reward(80.0, 80.0)));
-        Hotel bridgewood = new Hotel(new Rate(new Regular(160.0, 60.0), new Reward(110.0, 50.0)));
-        Hotel ridgewood = new Hotel(new Rate(new Regular(220.0, 150.0), new Reward(100.0, 40.0)));
+        Hotel lakewood = new Hotel(new Rate(new Customer(110.0, 90.0), new Customer(80.0, 80.0)));
+        Hotel bridgewood = new Hotel(new Rate(new Customer(160.0, 60.0), new Customer(110.0, 50.0)));
+        Hotel ridgewood = new Hotel(new Rate(new Customer(220.0, 150.0), new Customer(100.0, 40.0)));
         hotels.add(lakewood);
         hotels.add(bridgewood);
         hotels.add(ridgewood);

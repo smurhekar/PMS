@@ -1,13 +1,10 @@
 package main;
 
-/**
- * Created by Lenovo on 11/12/2015.
- */
-public class Regular {
+public class Customer {
     private final double weekday;
     private final double weekend;
 
-    public Regular(double weekday, double weekend) {
+    public Customer(double weekday, double weekend) {
         this.weekday = weekday;
         this.weekend = weekend;
     }
