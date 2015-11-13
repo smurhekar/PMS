@@ -1,14 +1,25 @@
 package main;
 
 public class Hotel {
-    private final Rate rate;
+    private final Customer regular;
+    private final Customer reward;
 
-    public Hotel(Rate rate) {
-        this.rate = rate;
+    public Hotel(Customer regular, Customer reward) {
+        this.regular = regular;
+        this.reward = reward;
+    }
+
+    private double getRateFor(boolean isWeekDay, String customerType) {
+        Customer customer = getCustomerBy(customerType);
+        return customer.getRateFor(isWeekDay);
+    }
+
+    private Customer getCustomerBy(String customerType) {
+        return customerType.equals("Regular") ? regular : reward;
     }
 
     private boolean isCheaperThan(Hotel cheapestHotel, boolean isWeekDay, String customerType) {
-        return rate.getRateFor(isWeekDay, customerType) < cheapestHotel.rate.getRateFor(isWeekDay, customerType);
+        return getRateFor(isWeekDay, customerType) < cheapestHotel.getRateFor(isWeekDay, customerType);
     }
 
     public Hotel getCheaperHotel(Hotel cheapestHotel, boolean isWeekDay, String customerType) {
