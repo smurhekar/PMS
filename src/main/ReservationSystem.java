@@ -16,7 +16,7 @@ public class ReservationSystem {
         boolean isWeekDay = isWeekDay(date);
         Hotel cheapestHotel = hotels.get(0);
         for (Hotel hotel:hotels){
-            cheapestHotel = hotel.getCheaperHotel(cheapestHotel, isWeekDay, customerType);
+            cheapestHotel = hotel.compareWith(cheapestHotel, isWeekDay, customerType);
         }
         return cheapestHotel;
     }

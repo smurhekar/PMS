@@ -1,29 +1,31 @@
 package main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Hotel {
-    private final Customer regular;
-    private final Customer reward;
+    private final Map<String, Rate> rates;
 
-    public Hotel(Customer regular, Customer reward) {
-        this.regular = regular;
-        this.reward = reward;
+    public Hotel(Rate regular, Rate reward) {
+        rates = new HashMap<>();
+        rates.put("Regular", regular);
+        rates.put("Reward", reward);
     }
 
-    private double getRateFor(boolean isWeekDay, String customerType) {
-        Customer customer = getCustomerBy(customerType);
-        return customer.getRateFor(isWeekDay);
+    private double getRateFor(boolean isWeekDay, String rateType) {
+        return getCustomerBy(rateType).getRateFor(isWeekDay);
     }
 
-    private Customer getCustomerBy(String customerType) {
-        return customerType.equals("Regular") ? regular : reward;
+    private Rate getCustomerBy(String rateType) {
+        return rates.get(rateType);
     }
 
-    private boolean isCheaperThan(Hotel cheapestHotel, boolean isWeekDay, String customerType) {
-        return getRateFor(isWeekDay, customerType) < cheapestHotel.getRateFor(isWeekDay, customerType);
+    private boolean isCheaperThan(Hotel cheapestHotel, boolean isWeekDay, String rateType) {
+        return getRateFor(isWeekDay, rateType) < cheapestHotel.getRateFor(isWeekDay, rateType);
     }
 
-    public Hotel getCheaperHotel(Hotel cheapestHotel, boolean isWeekDay, String customerType) {
-        if(isCheaperThan(cheapestHotel, isWeekDay, customerType)){
+    public Hotel compareWith(Hotel cheapestHotel, boolean isWeekDay, String rateType) {
+        if(isCheaperThan(cheapestHotel, isWeekDay, rateType)){
             return this;
         }
         return cheapestHotel;
