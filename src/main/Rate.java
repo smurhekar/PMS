@@ -9,7 +9,7 @@ public class Rate {
         this.weekend = weekend;
     }
 
-    public double getRateFor(boolean isWeekDay) {
+    public double when(boolean isWeekDay) {
         return isWeekDay ? weekday : weekend;
     }
 }
