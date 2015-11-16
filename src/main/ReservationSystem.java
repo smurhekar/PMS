@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -14,11 +15,8 @@ public class ReservationSystem {
 
     public Hotel findCheapestHotelFor(Date date, String customerType) {
         boolean isWeekDay = isWeekDay(date);
-        Hotel cheapestHotel = hotels.get(0);
-        for (Hotel hotel:hotels){
-            cheapestHotel = hotel.compareWith(cheapestHotel, isWeekDay, customerType);
-        }
-        return cheapestHotel;
+        Collections.sort(hotels, new HotelComparator(isWeekDay, customerType));
+        return hotels.get(0);
     }
 
     private boolean isWeekDay(Date date) {
