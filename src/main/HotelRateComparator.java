@@ -2,11 +2,11 @@ package main;
 
 import java.util.Comparator;
 
-public class HotelComparator implements Comparator<Hotel> {
+public class HotelRateComparator implements Comparator<Hotel> {
     private final boolean isWeekDay;
     private final String rateType;
 
-    public HotelComparator(boolean isWeekDay, String rateType) {
+    public HotelRateComparator(boolean isWeekDay, String rateType) {
         this.isWeekDay = isWeekDay;
         this.rateType = rateType;
     }

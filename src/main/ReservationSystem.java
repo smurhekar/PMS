@@ -15,7 +15,7 @@ public class ReservationSystem {
 
     public Hotel findCheapestHotelFor(Date date, String customerType) {
         boolean isWeekDay = isWeekDay(date);
-        Collections.sort(hotels, new HotelComparator(isWeekDay, customerType));
+        Collections.sort(hotels, new HotelRateComparator(isWeekDay, customerType));
         return hotels.get(0);
     }
 
